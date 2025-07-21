@@ -9,14 +9,30 @@
 - 平板電腦: 768px - 992px
 - 手機: 480px - 768px
 
+## 背景圖片處理
+- `background-size: cover;`背景圖片會覆蓋整個區域，保持圖片的比例，可能會裁剪
+- `background-size: contain;`:背景圖片會保持比例，顯示整張圖片，並可能會有空白區域
+
+```
+.container {
+  background-image: url('background-image.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+```
+
 ## 圖片處理
-  - 抽換
+  - 更換
     ```
-    <img src="image-400w.jpg" 
+    # srcset 指定寬度，使用w
+    # sizes 指定中斷，，使用px
+    <img src="small.jpg" 
         loading="lazy"
-        srcset="image-400w.jpg 400w, image-800w.jpg 800w" 
-        sizes="(max-width: 600px) 400px, 800px">
+        srcset="small.jpg 400w, middle.jpg 600w, large.jpg 800w" 
+        sizes="(max-width: 400px) 400px, (max-width: 600px) 600px, 800px">
     ```
+    
   - 自適應
     ```
     img {
@@ -24,9 +40,32 @@
       height: auto;
     }
     ```
-## 規則
-- 流式布局：使`百分比`來設計布局。
-- 彈性圖片：防止圖片過度放大，使用 `max-width: 100%`。
-- 媒體查詢：根據設備的特徵來改變樣式，以適應不同的顯示需求
+    
+  - Flex 自動縮放
+    ```
+    .image-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .image-gallery img {
+      max-width: 100%;
+      height: auto;
+      flex: 1 1 calc(33.33% - 20px); /* 每行顯示3張圖片 */
+    }
+
+    @media (max-width: 768px) {
+      .image-gallery img {
+        flex: 1 1 calc(50% - 20px); /* 在小屏設備上每行顯示2張圖片 */
+      }
+    }
+
+    @media (max-width: 480px) {
+      .image-gallery img {
+        flex: 1 1 100%; /* 在超小屏設備上每行顯示1張圖片 */
+      }
+    }
+    ```  
 
 
