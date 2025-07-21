@@ -9,15 +9,24 @@
 - 平板電腦: 768px - 992px
 - 手機: 480px - 768px
 
+## 圖片處理
+  - 抽換
+    ```
+    <img src="image-400w.jpg" 
+        loading="lazy"
+        srcset="image-400w.jpg 400w, image-800w.jpg 800w" 
+        sizes="(max-width: 600px) 400px, 800px">
+    ```
+  - 自適應
+    ```
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    ```
 ## 規則
 - 流式布局：使`百分比`來設計布局。
 - 彈性圖片：防止圖片過度放大，使用 `max-width: 100%`。
 - 媒體查詢：根據設備的特徵來改變樣式，以適應不同的顯示需求
 
-```
-@media (max-width: 768px) {
-  body {
-    background-color: lightblue;
-  }
-}
-```
+
