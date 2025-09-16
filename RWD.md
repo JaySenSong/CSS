@@ -40,11 +40,27 @@
     
   - 自適應
     ```
-    img {
-      max-width: 100%;
-      height: auto;
+    .container {
+        width: 200px;
+        height: 400px;
+    }
+
+    .container img {
+      max-width: 100%;   
+      height: auto;     //讓圖片保持原樣
     }
     ```
+
+  - 裁剪
+    ```
+    img {
+        width: 200px;
+        height: 400px;
+        object-fit: cover;
+        object-position: center;
+    }
+    ```
+    
     
   - Flex 自動縮放
     ```
